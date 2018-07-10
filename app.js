@@ -1,4 +1,4 @@
-//Aplicação utilizando framework Express com NODEJS
+//Aplicação utilizando framework Express e ejs para gerenciamento de views com NODEJS
 //importando o express
 var express = require('express');
 var app = express();
@@ -6,27 +6,21 @@ var app = express();
 app.set('view engine', 'ejs'); 
 
 app.get('/', function(req,res){
-
-	res.send("<html><body>Portal de Noticias</body></html>")
+	//utilizando as chamadas com ejs
+	res.render('home/index');
 });
 
-app.get('/tecnologia', function(req,res){
+app.get('/formulario_inclusao_noticia', function(req,res){
 
-	res.send("<html><body>Noticias de Tecnologia</body></html>")
-})
+	res.render("admin/form_add_noticia");
+});
 
-app.get('/moda', function(req,res){
+app.get('/noticias', function(req,res){
 
-	res.send("<html><body>Noticias de Moda</body></html>")
-})
-
-app.get('/beleza', function(req,res){
-
-	res.send("<html><body>Noticias de Beleza</body></html>")
-})
+	res.render("noticias/noticias");
+});
 
 app.listen(3000, function(){
-
-	console.log('Servidor funcionando com Express');
-
+    console.log("Servidor rodando com Express");
 });
+
