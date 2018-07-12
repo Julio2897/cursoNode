@@ -1,26 +1,15 @@
-//Aplicação utilizando framework Express e ejs para gerenciamento de views com NODEJS
-//importando o express
-var express = require('express');
-var app = express();
+var app = require('./config/server');
 
-app.set('view engine', 'ejs'); 
+var rotaNoticias = require('./app/routes/noticias');
+rotaNoticias(app);
 
-app.get('/', function(req,res){
-	//utilizando as chamadas com ejs
-	res.render('home/index');
-});
+var rotaHome = require('./app/routes/home');
+rotaHome(app);
 
-app.get('/formulario_inclusao_noticia', function(req,res){
-
-	res.render("admin/form_add_noticia");
-});
-
-app.get('/noticias', function(req,res){
-
-	res.render("noticias/noticias");
-});
+var rotaFormularioInclusaoNoticias = require('./app/routes/formulario_inclusao_noticias');
+rotaFormularioInclusaoNoticias(app);
 
 app.listen(3000, function(){
-    console.log("Servidor rodando com Express");
-});
+    console.log("Servidor ON");
+}); 
 
