@@ -5,9 +5,9 @@ module.exports = function(app){
 
 		//Executa a funcao que realiza a conexao
 		var connection = app.config.dbConnection(); //agora vai executar somente quando a rota for requisitada
+		var noticiasModel = app.app.models.noticiasModel;
 
-		//executando uma chamada de acesso ao banco de dados
-		connection.query('select * from noticias where id_noticias = 1', function(error, result){
+		noticiasModel.getNoticia(connection, function(error, result){
 			res.render("noticias/noticia", {noticia : result});
 		});
 	});
