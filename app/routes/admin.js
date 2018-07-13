@@ -6,7 +6,14 @@ module.exports = function(app){
 	});
 
 	app.post('/noticias/salvar', function(req,res){
-		var noticias = req.body;
-		res.send(noticias);
+		var noticia = req.body;
+
+		var connection = app.config.dbConnection(); 
+		var noticiasModel = app.app.models.noticiasModel;
+
+		//executando uma chamada de acesso ao banco de dados
+		noticiasModel.salvarNoticia(noticia, connection, function(error, result){
+			res.redirect('/noticias');
+		});
 	});
 };
