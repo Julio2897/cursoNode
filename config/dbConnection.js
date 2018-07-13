@@ -1,7 +1,8 @@
 //incorporando o modulo mysql a aplicacao
 var mysql = require('mysql');
 
-module.exports = function(){
+var connMySql = function(){
+	console.log('Conexao com o banco estabelecida');
 	//estabelecendo a conexao
 	return mysql.createConnection({
 		host: 'localhost', //endereco da conexao
@@ -9,4 +10,8 @@ module.exports = function(){
 		password: 'root',
 		database: 'portal_noticias'
 	});
+}
+//Evita que no autoload a funcao seja executada
+module.exports = function(){
+	return connMySql;
 }
